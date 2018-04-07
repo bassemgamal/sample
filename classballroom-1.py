@@ -296,26 +296,80 @@ class ekhnaton(ballroom):
 		if "bubbles" in self.items.keys():
 			self.items.pop("bubbles")
 			
-	#def add_ledscreen(self):
+	def add_firworks_on_df(self):
 		self.items["4 fireworks on DF"]= 1200
 		self.cost = sum(self.items.values())
 		
-	def remove_ledscreen(self):
+	def remove_firworks_on_df(self):
 		if "4 fireworks on DF" in self.items.keys():
 			self.items.pop("4 fireworks on DF")
 			
-	def add_ledscreen(self):
+	def add_firworks_on_cw(self):
 		self.items["4 fireworks on CW"]= 1200
 		self.cost = sum(self.items.values())
 		
-	def remove_ledscreen(self):
+	def remove_firworks_on_cw(self):
 		if "4 fireworks on CW" in self.items.keys():
 			self.items.pop("4 fireworks on CW")
 			
-	def add_ledscreen(self):
+	def add_firworks_on_cake(self):
 		self.items["2 fireworks on cake"]= 600
 		self.cost = sum(self.items.values())
 		
-	def remove_ledscreen(self):
+	def remove_firworks_on_cake(self):
 		if "2 fireworks on cake" in self.items.keys():
 			self.items.pop("2 fireworks on cake")
+			
+	def add_dancers(self, count):
+		cost = (count /2) * 850
+		self.items["dancers"]= cost
+		self.cost = sum(self.items.values())
+		
+	def remove_dancers(self):
+		if "dancers" in self.items.keys():
+			self.items.pop("dancers")
+			
+	def add_ballarena(self, count):
+		if count == 6:
+			cost = 1000
+			self.items["ballarena"]= cost
+			self.cost = sum(self.items.values())
+		elif count == 8:
+			cost = 1200
+			self.items["ballarena"]= cost
+			self.cost = sum(self.items.values())
+		else: 
+			print("sorry you can request 6 or 8 girls only")
+			
+		
+	def remove_ballarena(self):
+		if "ballarena" in self.items.keys():
+			self.items.pop("ballarena")
+			
+	def add_photo_clip(self):
+		print("send your photos before 7 days of your wedding day.")
+		self.items["photoclip"]= 300
+		self.cost = sum(self.items.values())
+		
+	def remove_photo_clip(self):
+		if "photoclip" in self.items.keys():
+			self.items.pop("photoclip")
+			
+	def add_show_laser(self):
+		self.items["showlaser"]= 2500
+		self.cost = sum(self.items.values())
+		
+	def remove_show_laser(self):
+		if "showlaser" in self.items.keys():
+			self.items.pop("showlaser")
+			
+	def add_pepsi(self):
+		cost = self.count * 4
+		self.items["pepsi"] = cost
+		self.cost = sum(self.items.keys())
+		
+	
+	def remove_pepsi(self):
+		if "pepsi" in self.items.keys():
+			self.items.pop("pepsi")
+	
