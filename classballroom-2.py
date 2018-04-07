@@ -23,6 +23,7 @@ class ekhnaton(ballroom):
 		del self
 		
 	def check_out(self):
+		self.items.keys.sort()
 		self.cost = sum(self.items.values())
 		print("="* 30)
 		print("items "+ (" "*14) + "cost")
@@ -366,10 +367,45 @@ class ekhnaton(ballroom):
 	def add_pepsi(self):
 		cost = self.count * 4
 		self.items["pepsi"] = cost
-		self.cost = sum(self.items.keys())
+		self.cost = sum(self.items.values())
 		
 	
 	def remove_pepsi(self):
 		if "pepsi" in self.items.keys():
 			self.items.pop("pepsi")
 	
+	def add_fresh_juice(self):
+		cost = self.count * 10
+		self.items["fresh juice"] = cost
+		self.cost = sum(self.items.values())
+		
+	
+	def remove_fresh_juice(self):
+		if "fresh juice" in self.items.keys():
+			self.items.pop("fresh juice")
+			
+	def add_open_drinks(self):
+		cost = self.count * 15
+		self.items["open drinks"] = cost
+		self.cost = sum(self.items.values())
+		
+	
+	def remove_open_drinks(self):
+		if "open drinks" in self.items.keys():
+			self.items.pop("open drinks")
+			
+	def add_mazoon(self,m=1000):
+		if m <= 10000:
+			cost = 600
+			self.items["mazoon"] = cost
+			self.cost = sum(self.items.values())
+		elif m != 0 and m > 10000:
+			cost = (m* (3.5/100)) + 100
+			self.items["mazoon"] = cost
+			self.cost = sum(self.items.values())
+		else:
+			print("check moaphar amount to get you right cost")
+		
+	def remove_mazoon(self):
+		if "mazoon" in self.items.keys():
+			self.items.pop("mazoon")
