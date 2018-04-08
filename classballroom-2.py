@@ -1,5 +1,5 @@
-import tkinter
-from tkinter import *
+#import tkinter
+#from tkinter import *
 
 
 class ballroom():
@@ -368,6 +368,8 @@ class ekhnaton(ballroom):
 			self.items.pop("showlaser")
 
 	def add_pepsi(self):
+		if "open drinks" in self.items.keys():
+			self.items.pop("open drinks")
 		cost = self.count * 4
 		self.items["pepsi"] = cost
 		self.cost = sum(self.items.values())
@@ -388,6 +390,8 @@ class ekhnaton(ballroom):
 			self.items.pop("fresh juice")
 
 	def add_open_drinks(self):
+		if "pepsi" in self.items.keys():
+			self.items.pop("pepsi")
 		cost = self.count * 15
 		self.items["open drinks"] = cost
 		self.cost = sum(self.items.values())
@@ -412,6 +416,48 @@ class ekhnaton(ballroom):
 	def remove_mazoon(self):
 		if "mazoon" in self.items.keys():
 			self.items.pop("mazoon")
+			
+	def add_nuts(self):
+		cost = self.count * 25
+		self.items["nuts"] = cost
+		self.cost= sum(self.items.values())
+			
+	def remove_nuts(self):
+		if "nuts" in self.items.keys():
+			self.items.pop("nuts")
+			
+	def add_american_cake(self):
+		cost = 500
+		self.items["american cake"]= cost
+		self.cost = sum(self.items.values())
+		
+	def remove_american_cake(self):
+		if "american cake" in self.items.keys():
+			self.items.pop("american cake")
+			
+	def add_fullHD(self):
+		if "4k" in self.items.keys():
+			self.items.pop("4k")
+		cost = 10000
+		self.items["fullHD"]= cost
+		self.cost = sum(self.items.values())
+		
+	def remove_fullHD(self):
+		if "fullHD" in self.items.keys():
+			self.items.pop("fullHD")
+		
+	def add_4k(self):
+		if "fullHD" in self.items.keys():
+			self.items.pop("fullHD")
+		cost = 15000
+		self.items["4k"]= cost
+		self.cost = sum(self.items.values())
+		
+	def remove_4k(self):
+		if "4k" in self.items.keys():
+			self.items.pop("4k")
+			
+			
 ##	root = Tk()
 ##	main_frame = Frame(root,height = 900, width = 1800)
 ##	main_frame.pack()
