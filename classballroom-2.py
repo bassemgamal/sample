@@ -1,185 +1,188 @@
+import tkinter
+from tkinter import *
+
+
 class ballroom():
 	def __init__(self, name, count):
 		self.name = name
 		self.count = count
-		
+
 
 class ekhnaton(ballroom):
-	def __init__ (self, name, count, bofeeh, type, cost=0, items={}):
+	def __init__ (self, name, count, buffet, type, cost=0, items={}):
 		ballroom.__init__(self, name, count)
 		self.type = type
-		self.bofeeh = bofeeh
+		self.buffet = buffet
 		self.cost = cost
 		self.items = items
-	
-	
+
+
 	def delete_it(self):
 		del self.name
 		del self.count
-		del self.bofeeh
+		del self.buffet
 		del self.type
 		del self.cost
 		del self.items
 		del self
-		
+
 	def check_out(self):
-		self.items.keys.sort()
 		self.cost = sum(self.items.values())
 		print("="* 30)
 		print("items "+ (" "*14) + "cost")
 		print("="* 30)
-		for i in self.items:
-			before = 20 - len(str(i))
-			print(str(i) + (" "* before) + str(self.items[i]))
+		for key in sorted(self.items.keys()):
+			before = 20 - len(str(key))
+			print(str(key) + (" "* before) + str(self.items[key]))
 		print("_"* 30)
 		print("total "+ (" "*14) + str(self.cost))
-		
+
 	def bofeeh_cost(self):
 		# madany type properity
 		if self.type == "madany":
-			# romancy bofeeh for 250, less and more
-			if self.bofeeh == 1:
-				# romancy bofeeh for 250 count
+			# romancy buffet for 250, less and more
+			if self.buffet == 1:
+				# romancy buffet for 250 count
 				if self.count == 250:
-					self.items['bofeeh'] = 68000
+					self.items['buffet'] = 68000
 					self.cost = sum(self.items.values())
-					print("your selection on romancy")
+					print("your selection on ROMANCY buffet")
+					print("your Type is Madany")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
-				# romancy bofeeh for more, less than 250
+				# romancy buffet for more, less than 250
 				elif self.count > 250 and self.count < 451:
 					rate = 140
 					extra = self.count - 250
 					extra_cost = rate * extra
-					self.items['bofeeh'] = 68000 + extra_cost
+					self.items['buffet'] = 68000 + extra_cost
 					self.cost = sum(self.items.values())
-					print("your selection on romancy")
+					print("your selection on ROMANCY buffet")
+					print("your Type is Madany")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				# for case out of capacity
 				else:
 					print("sorry ekhnaton capacity is from 250 to 450")
 					print ("check your count again")
 					return self.count
-			# ahlam bofeeh for more, less or 250 count
-			elif self.bofeeh == 2:
+			# ahlam buffet for more, less or 250 count
+			elif self.buffet == 2:
 				# ahlam for 250 count
 				if self.count == 250:
-					self.items['bofeeh'] = 72500
+					self.items['buffet'] = 72500
 					self.cost = sum(self.items.values())
-					print("your selection on ahlam")
+					print("your selection on ALAHALM buffet")
+					print("your Type is Madany")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				# ahlam for more, less than 250
 				elif self.count > 250 and self.count < 451:
 					rate = 160
 					extra = self.count - 250
 					extra_cost = rate * extra
-					self.items['bofeeh'] = 72500 + extra_cost
+					self.items['buffet'] = 72500 + extra_cost
 					self.cost = sum(self.items.values())
-					print("your selection on ahlam")
+					print("your selection on ALAHALM buffet")
+					print("your Type is Madany")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				# for out of capacity
 				else:
 					print("sorry ekhnaton capacity is from 250 to 450")
 					print ("check your count again")
 					return self.count
-			# omaraa bofeeh for 250, less and more
-			elif self.bofeeh == 3:
+			# omaraa buffet for 250, less and more
+			elif self.buffet == 3:
 				# omaraa for 250 count
 				if self.count == 250:
-					self.items['bofeeh'] = 77000
+					self.items['buffet'] = 77000
 					self.cost = sum(self.items.values())
-					print("your selection on omaraa")
+					print("your selection on OMARA' buffet")
+					print("your Type is Madany")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				# omaraa for less and more than 250
 				elif self.count > 250 and self.count < 451:
 					rate = 180
 					extra = self.count - 250
 					extra_cost = rate * extra
-					self.items['bofeeh'] = 77000 + extra_cost
+					self.items['buffet'] = 77000 + extra_cost
 					self.cost = sum(self.items.values())
-					print("your selection on omaraa")
+					print("your selection on OMARA' buffet")
+					print("your Type is Madany")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				# omara our of capacity
 				else:
 					print("sorry ekhnaton capacity is from 250 to 450")
 					print ("check your count again")
 					return self.count
 		elif self.type == "officer":
-			if self.bofeeh == 1:
+			if self.buffet == 1:
 				if self.count == 250:
-					self.items['bofeeh'] = 56000
+					self.items['buffet'] = 56000
 					self.cost = sum(self.items.values())
-					print("your selection on romancy")
+					print("your selection on ROMANCY buffet")
+					print("your Type is Officer")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				elif self.count > 250 and self.count < 451:
 					rate = 120
 					extra = self.count - 250
 					extra_cost = rate * extra
-					self.items['bofeeh'] = 56000 + extra_cost
+					self.items['buffet'] = 56000 + extra_cost
 					self.cost = sum(self.items.values())
-					print("your selection on romancy")
+					print("your selection on ROMANCY buffet")
+					print("your Type is Officer")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				else:
 					print("sorry ekhnaton capacity is from 250 to 450")
 					print ("check your count again")
 					return self.count
-			elif self.bofeeh == 2:
+			elif self.buffet == 2:
 				if self.count == 250:
-					self.items['bofeeh'] = 60500
+					self.items['buffet'] = 60500
 					self.cost = sum(self.items.values())
-					print("your selection on ahlam")
+					print("your selection on AHLAM buffet")
+					print("your Type is Officer")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				elif self.count > 250 and self.count < 451:
 					rate = 140
 					extra = self.count - 250
 					extra_cost = rate * extra
-					self.items['bofeeh'] = 60500 + extra_cost
+					self.items['buffet'] = 60500 + extra_cost
 					self.cost = sum(self.items.values())
-					print("your selection on ahlam")
+					print("your selection on AHLAM buffet")
+					print("your Type is Officer")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				else:
 					print("sorry ekhnaton capacity is from 250 to 450")
 					print ("check your count again")
 					return self.count
-			elif self.bofeeh == 3:
+			elif self.buffet == 3:
 				if self.count == 250:
-					self.items['bofeeh'] = 65000
+					self.items['buffet'] = 65000
 					self.cost = sum(self.items.values())
-					print("your selection on omaraa")
+					print("your selection on OMARAA' buffet")
+					print("your Type is Officer")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				elif self.count > 250 and self.count < 451:
 					rate = 160
 					extra = self.count - 250
 					extra_cost = rate * extra
-					self.items['bofeeh'] = 65000 + extra_cost
+					self.items['buffet'] = 65000 + extra_cost
 					self.cost = sum(self.items.values())
-					print("your selection on omaraa")
+					print("your selection on OMARAA' buffet")
+					print("your Type is Officer")
 					print("your count is " + str(self.count))
-					return self.cost, self.items
 				else:
 					print("sorry ekhnaton capacity is from 250 to 450")
 					print ("check your count again")
 					return self.count
-					
+
 	def add_chaircover(self):
 		cost = self.count * 10
 		self.items["chairs"]= cost
 		self.cost = sum(self.items.values())
-		
+
 	def remove_chaircover(self):
 		if "chairs" in self.items.keys():
 			self.items.pop("chairs")
-	
+
 	def add_vipchairs(self):
 		if "chairs" in self.items.keys():
 			self.items.pop("chairs")
@@ -190,146 +193,146 @@ class ekhnaton(ballroom):
 			cost = self.count * 20
 			self.items["VIPchairs"]= cost
 			self.cost = sum(self.items.values())
-			
+
 	def remove_Vipchairs(self):
 		if "VIPchairs" in self.items.keys():
 			self.items.pop("VIPchairs")
-			
-		
-	
+
+
+
 	def add_dancefloor(self):
 		cost = 3500
 		self.items["dancefloor"]= cost
 		self.cost = sum(self.items.values())
-		
+
 	def remove_dancefloor(self):
 		if "dancefloor" in self.items.keys():
 			self.items.pop("dancefloor")
-		
-		
+
+
 	def add_hightables(self, count_to_add):
 		if count_to_add <= 8:
 			cost = (count_to_add * 150)
 			self.items["hightables"]= cost
 			self.cost = sum(self.items.values())
-			
+
 		else:
 			print("sorry max number of tables to add is 8")
 			return count_to_add
-			
-			
+
+
 	def remove_hightables(self):
 		if "hightables" in self.items.keys():
 			self.items.pop("hightables")
-			
+
 	def add_catwalk(self):
 		self.items["catwalk"]= 2400
 		self.cost = sum(self.items.values())
-		
+
 	def remove_catwalk(self):
 		if "catwalk" in self.items.keys():
 			self.items.pop("catwalk")
-		
-	
+
+
 	def add_ledscreen(self):
 		self.items["ledscreen"]= 3000
 		self.cost = sum(self.items.values())
-		
+
 	def remove_ledscreen(self):
 		if "ledscreen" in self.items.keys():
 			self.items.pop("ledscreen")
-		
-		
+
+
 	def add_launge(self, count_to_add):
 		if count_to_add <= 4:
 			cost = (count_to_add * 600)
 			self.items["launge"]= cost
 			self.cost = sum(self.items.values())
-			
+
 		else:
 			print("sorry max number of tables to add is 4")
 			return count_to_add
-			
+
 	def remove_launge(self):
 		if "launge" in self.items.keys():
 			self.items.pop("launge")
-			
+
 	def add_photoghraphy(self, cost_to_add):
 		self.items["photograghy"]= cost_to_add
 		self.cost = sum(self.items.values())
-		
+
 	def remove_photography(self):
 		if "photograghy" in self.items.keys():
 			self.items.pop("photograghy")
-		
+
 	def add_showfire(self, category):
 		if category == 1:
 			cost = 6000
 			self.items["showfire"]= cost
 			self.cost = sum(self.items.values())
 			print("you selected first one 6500")
-			
+
 		elif category == 2:
 			cost = 9000
 			self.items["showfire"]= cost
 			self.cost = sum(self.items.values())
 			print("you selected the rock show 9000")
-			
+
 		elif category == 3:
 			cost = 11500
 			self.items["showfire"]= cost
 			self.cost = sum(self.items.values())
 			print("you selected dreams show 11500")
-			
+
 		else:
 			print("sorry check your category from 1:3 available only")
 			return category
-	
+
 	def remove_showfire(self):
 		if "showfire" in self.items.keys():
 			self.items.pop("showfire")
-			
+
 	def add_bubbles(self):
 		self.items["bubbles"]= 350
 		self.cost = sum(self.items.values())
-		
+
 	def remove_bubbled(self):
 		if "bubbles" in self.items.keys():
 			self.items.pop("bubbles")
-			
+
 	def add_firworks_on_df(self):
 		self.items["4 fireworks on DF"]= 1200
 		self.cost = sum(self.items.values())
-		
+
 	def remove_firworks_on_df(self):
 		if "4 fireworks on DF" in self.items.keys():
 			self.items.pop("4 fireworks on DF")
-			
+
 	def add_firworks_on_cw(self):
 		self.items["4 fireworks on CW"]= 1200
 		self.cost = sum(self.items.values())
-		
+
 	def remove_firworks_on_cw(self):
 		if "4 fireworks on CW" in self.items.keys():
 			self.items.pop("4 fireworks on CW")
-			
+
 	def add_firworks_on_cake(self):
 		self.items["2 fireworks on cake"]= 600
 		self.cost = sum(self.items.values())
-		
+
 	def remove_firworks_on_cake(self):
 		if "2 fireworks on cake" in self.items.keys():
 			self.items.pop("2 fireworks on cake")
-			
+
 	def add_dancers(self, count):
 		cost = (count /2) * 850
 		self.items["dancers"]= cost
 		self.cost = sum(self.items.values())
-		
+
 	def remove_dancers(self):
 		if "dancers" in self.items.keys():
 			self.items.pop("dancers")
-			
+
 	def add_ballarena(self, count):
 		if count == 6:
 			cost = 1000
@@ -339,61 +342,61 @@ class ekhnaton(ballroom):
 			cost = 1200
 			self.items["ballarena"]= cost
 			self.cost = sum(self.items.values())
-		else: 
+		else:
 			print("sorry you can request 6 or 8 girls only")
-			
-		
+
+
 	def remove_ballarena(self):
 		if "ballarena" in self.items.keys():
 			self.items.pop("ballarena")
-			
+
 	def add_photo_clip(self):
 		print("send your photos before 7 days of your wedding day.")
 		self.items["photoclip"]= 300
 		self.cost = sum(self.items.values())
-		
+
 	def remove_photo_clip(self):
 		if "photoclip" in self.items.keys():
 			self.items.pop("photoclip")
-			
+
 	def add_show_laser(self):
 		self.items["showlaser"]= 2500
 		self.cost = sum(self.items.values())
-		
+
 	def remove_show_laser(self):
 		if "showlaser" in self.items.keys():
 			self.items.pop("showlaser")
-			
+
 	def add_pepsi(self):
 		cost = self.count * 4
 		self.items["pepsi"] = cost
 		self.cost = sum(self.items.values())
-		
-	
+
+
 	def remove_pepsi(self):
 		if "pepsi" in self.items.keys():
 			self.items.pop("pepsi")
-	
+
 	def add_fresh_juice(self):
 		cost = self.count * 10
 		self.items["fresh juice"] = cost
 		self.cost = sum(self.items.values())
-		
-	
+
+
 	def remove_fresh_juice(self):
 		if "fresh juice" in self.items.keys():
 			self.items.pop("fresh juice")
-			
+
 	def add_open_drinks(self):
 		cost = self.count * 15
 		self.items["open drinks"] = cost
 		self.cost = sum(self.items.values())
-		
-	
+
+
 	def remove_open_drinks(self):
 		if "open drinks" in self.items.keys():
 			self.items.pop("open drinks")
-			
+
 	def add_mazoon(self,m=1000):
 		if m <= 10000:
 			cost = 600
@@ -405,7 +408,30 @@ class ekhnaton(ballroom):
 			self.cost = sum(self.items.values())
 		else:
 			print("check moaphar amount to get you right cost")
-		
+
 	def remove_mazoon(self):
 		if "mazoon" in self.items.keys():
 			self.items.pop("mazoon")
+##	root = Tk()
+##	main_frame = Frame(root,height = 900, width = 1800)
+##	main_frame.pack()
+##	
+##	label_topframe = LabelFrame(root, text="main3 frame")
+##	label_topframe.pack(fill="both", expand="yes")
+##
+##	
+##	label_bottomframe = LabelFrame(label_topframe, text="main2 frame")
+##	label_bottomframe.pack(expand="yes")
+##
+##	name = StringVar()
+##	name_label = Label(label_topframe, bd= 3, textvariable=name, relief=RAISED)
+##	name.set("Name:")
+##	name_label.pack(side = TOP)
+##	
+##	greenbutton = Button(main_frame, text="Brown", fg="brown")
+##	greenbutton.pack( side = LEFT )
+##	bluebutton = Button(main_frame, text="Blue", fg="blue")
+##	bluebutton.pack( side = LEFT )
+##	#blackbutton = Button(bottomframe, text="Black", fg="black")
+##	#blackbutton.pack( side = BOTTOM)
+##	root.mainloop()
