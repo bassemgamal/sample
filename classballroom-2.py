@@ -24,7 +24,6 @@ class ekhnaton(ballroom):
 		del self.type
 		del self.cost
 		del self.items
-		del self
 
 	def check_out(self):
 		self.cost = sum(self.items.values())
@@ -457,13 +456,116 @@ class ekhnaton(ballroom):
 		if "4k" in self.items.keys():
 			self.items.pop("4k")
 			
+	def add_decore_corridoor(self):
+		cost = 2500
+		self.items["decore corridor"] = cost
+		self.cost = sum(self.items.values())
+		
+	def remove_decore_corridoor(self):
+		if "decore corridor" in self.items.keys():
+			self.items.pop("decore corridor")
+			
+	def add_entrance_guestbook(self):
+		cost = 600
+		self.items["entrance guestbook"] = cost
+		self.cost = sum(self.items.values())
+		
+	def remove_entrance_guestbook(self):
+		if "entrance guestbook" in self.items.keys():
+			self.items.pop("entrance guestbook")
+			
+	def add_guestbook(self):
+		cost = 300
+		self.items["guestbook"] = cost
+		self.cost = sum(self.items.values())
+		
+	def remove_guestbook(self):
+		if "guestbook" in self.items.keys():
+			self.items.pop("guestbook")
+			
+	def add_merriage_cups(self):
+		cost = 150
+		self.items["merriage_cups"] = cost
+		self.cost = sum(self.items.values())
+	
+	def remove_merriage_cups(self):
+		if "merriage_cups" in self.items.keys():
+			self.items.pop("merriage_cups")
+		
+	def add_2_large_round_table(self):
+		cost = 2000
+		self.items["2_large_round_table"] = cost
+		self.cost = sum(self.items.values())
+		
+	def remove_2_large_round_table(self):
+		if "2_large_round_table" in self.items.keys():
+			self.items.pop("2_large_round_table")
+			
+	def add_premission_outer_photography(self):
+		if self.type == "madany":
+			cost = 2000
+			self.items["premission_outer_photography"] = cost
+			self.cost = sum(self.items.values())
+		elif self.type == "officer":
+			cost = 1000
+			self.items["premission_outer_photography"] = cost
+			self.cost = sum(self.items.values())
+		else:
+			print("check your type madany or office no more choices")
+			
+	def remove_premission_outer_photography(self):
+		if "premission_outer_photography" in self.items.keys():
+			self.items.pop("premission_outer_photography")
+			
+			
+	def add_chocolate_fountine(self):
+		cost = 1500
+		self.items["chocolate_fountine"] = cost
+		self.cost = sum(self.items.values())
+		
+	def remove_chocolate_fountine(self):
+		if "chocolate_fountine" in self.items.keys():
+			self.items.pop("chocolate_fountine")
+			
+		def add_sound(self):
+			cost = 1000
+			self.items["sound"]= cost
+			self.cost = sum(self.items.values())
+			
+		def remove_sound(self):
+			if "sound" in self.items.keys():
+				self.items.pop("sound")
+				
+				
+		def add_extra_dvd(self, count):
+			cost = count * 40
+			self.items["extra_dvd"]= cost
+			self.cost = sum(self.items.values())
+			
+		def remove_extra_dvd(self):
+			if "extra_dvd" in self.items.keys():
+				self.items.pop("extra_dvd")
+				
+		def add_flash_video(self, count=1):
+			cost = count * 250
+			self.items["flash_video"]= cost
+			self.cost = sum(self.items.values())
+			
+		def remove_flash_video(self):
+			if "flash_video" in self.items.keys():
+				self.items.pop("flash_video")
+				
+		
+		
+			
+			
 			
 ##	root = Tk()
 ##	main_frame = Frame(root,height = 900, width = 1800)
 ##	main_frame.pack()
 ##	
 ##	label_topframe = LabelFrame(root, text="main3 frame")
-##	label_topframe.pack(fill="both", expand="yes")
+##	label_topframe.pack(fill="both", expand="yes") 
 ##
 ##	
 ##	label_bottomframe = LabelFrame(label_topframe, text="main2 frame")
