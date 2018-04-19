@@ -1,4 +1,4 @@
-from tkinter import *
+﻿from tkinter import *
 from tkinter import ttk
 import time
 from tkinter import messagebox
@@ -24,7 +24,6 @@ class obj_ekhnaton:
     def __init__(self):
         self.count = IntVar()
         self.buffetvar = StringVar()
-        self.buffet = IntVar()
         self.type = IntVar()
         self.chairsvar = StringVar()
         self.chairs = IntVar()
@@ -90,8 +89,6 @@ class obj_ekhnaton:
         print("=" * 15 + "  SUMMARY  " + "=" * 15)
         print("#" * 41)
         print(" " * 41)
-        account.buffet_cost()
-        buffetValue.set(str(account.items["buffet"]) + " L.E.")
         if account.chairs.get() == 1:
             account.remove_Vipchairs()
             account.add_chaircover()
@@ -131,36 +128,6 @@ class obj_ekhnaton:
         elif account.showfire.get() == 3:
             account.add_showfire(3)
             showfireValue.set(str(account.items["showfire"]) + " L.E.")
-        if account.enteranceScreen.get() == 1:
-            account.add_ledscreen()
-            enteranceledValue.set(str(account.items["ledscreen"])+ " L.E.")
-        elif account.enteranceScreen.get() == 0:
-            account.remove_ledscreen()
-            enteranceledValue.set(str(0)+ " L.E.")
-        if account.catwalk.get() == 1:
-            account.add_catwalk()
-            catwalkValue.set(str(account.items["catwalk"])+ " L.E.")
-        elif account.catwalk.get() == 0:
-            account.remove_catwalk()
-            catwalkValue.set(str(0)+ " L.E.")
-        if account.lounge.get() == 1:
-            account.add_launge()
-            loungeValue.set(str(account.items["launge"]) + " L.E.")
-        elif account.lounge.get() == 0:
-            account.remove_launge()
-            loungeValue.set(str(0) + " L.E.")
-        if account.largeroundtabled.get() == 1:
-            account.add_2_large_round_table()
-            largetablesValue.set(str(account.items["2_large_round_table"]) + " L.E.")
-        elif account.largeroundtabled.get() == 0:
-            account.remove_2_large_round_table()
-            largetablesValue.set(str(0) + " L.E.")
-        if account.largeCenterpeice.get() == 1:
-            account.add_2_large_round_centerpiece()
-            largetablescenterpeiceValue.set(str(account.items["2_large_round_centerpeice"]) + " L.E.")
-        elif account.largeCenterpeice.get() == 0:
-            account.remove_2_large_round_centerpiece()
-            largetablescenterpeiceValue.set(str(0) + " L.E.")
         if account.dancefloor.get() == 1:
             account.add_dancefloor()
             dancefloorValue.set(str(account.items["dancefloor"]) + " L.E.")
@@ -359,155 +326,175 @@ class obj_ekhnaton:
 
         self.cost = sum(self.items.values())
         print("=" * 41)
-        print("items " + (" " * 25) + "cost")
+        print("البيانات " + (" " * 20) + "التكلفة")
         print("=" * 41)
         for key in sorted(self.items.keys()):
             before = 31 - len(str(key))
             print(str(key) + (" " * before) + str(self.items[key]))
         print("_" * 41)
-        print("total " + (" " * 25) + str(self.cost))
+        print("الاجمالي " + (" " * 20) + str(self.cost))
 
     def update_All(self, value):
         count = self.count
         count.set(value)
 
+
+
     def buffet_cost(self):
         # madany type properity
         if self.type.get() == 0 :
             # romancy buffet for 250, less and more
-            if self.buffet.get() == 1:
+            if  self.buffetvar.get() == "Romancy":
                 # romancy buffet for 250 count
                 if self.count.get() == 250:
-                    self.items['buffet'] = 68000
+                    self.items['بوفية'] = 68000
                     self.cost = sum(self.items.values())
-                    print("your selection on ROMANCY buffet")
-                    print("your ballroom_type is Madany")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية رومانسي")
+                    print("مدني")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 # romancy buffet for more, less than 250
                 elif self.count.get() > 250 and self.count.get() < 451:
                     rate = 140
                     extra = self.count.get() - 250
                     extra_cost = rate * extra
-                    self.items['buffet'] = 68000 + extra_cost
+                    self.items['بوفية'] = 68000 + extra_cost
                     self.cost = sum(self.items.values())
-                    print("your selection on ROMANCY buffet")
-                    print("your ballroom_type is Madany")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية رومانسي")
+                    print("مدني")
+                    print("العدد  " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 # for case out of capacity
                 else:
-                    print("sorry ekhnaton capacity is from 250 to 450")
-                    print("check your count again")
-                    self.items['buffet'] = 0
+                    print("استيعاب قاعة اخناتون من 250 الي 450")
+                    print("تحقق من العدد مرة اخري")
+                    self.items['بوفية'] = 0
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
             # ahlam buffet for more, less or 250 count
-            elif self.buffet.get() == 2:
+            elif self.buffetvar.get() == "Ahlam":
                 # ahlam for 250 count
                 if self.count.get() == 250:
-                    self.items['buffet'] = 72500
+                    self.items['بوفية'] = 72500
                     self.cost = sum(self.items.values())
-                    print("your selection on ALAHALM buffet")
-                    print("your ballroom_type is Madany")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية احلام")
+                    print("مدني")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 # ahlam for more, less than 250
                 elif self.count.get() > 250 and self.count.get() < 451:
                     rate = 160
                     extra = self.count.get() - 250
                     extra_cost = rate * extra
-                    self.items['buffet'] = 72500 + extra_cost
+                    self.items['بوفية'] = 72500 + extra_cost
                     self.cost = sum(self.items.values())
-                    print("your selection on ALAHALM buffet")
-                    print("your ballroom_type is Madany")
-                    print("your count is " + str(self.count.get()))
+                    print("الاحلام")
+                    print("مدني")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 # for out of capacity
                 else:
-                    print("sorry ekhnaton capacity is from 250 to 450")
-                    print("check your count again")
-                    self.items['buffet'] = 0
+                    print("استيعاب قاعة اخناتون من 250 الي 450")
+                    print("تحقق من الرقم مرة اخري")
+                    self.items['بوفية'] = 0
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
             # omaraa buffet for 250, less and more
-            elif self.buffet.get() == 3:
+            elif self.buffetvar.get() == "Omara":
                 # omaraa for 250 count
                 if self.count.get() == 250:
-                    self.items['buffet'] = 77000
+                    self.items['بوفية'] = 77000
                     self.cost = sum(self.items.values())
-                    print("your selection on OMARA' buffet")
-                    print("your ballroom_type is Madany")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية الامراء")
+                    print("مدني")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 # omaraa for less and more than 250
                 elif self.count.get() > 250 and self.count.get() < 451:
                     rate = 180
                     extra = self.count.get() - 250
                     extra_cost = rate * extra
-                    self.items['buffet'] = 77000 + extra_cost
+                    self.items['بوفية'] = 77000 + extra_cost
                     self.cost = sum(self.items.values())
-                    print("your selection on OMARA' buffet")
-                    print("your ballroom_type is Madany")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية الامراء")
+                    print("مدني ")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 # omara our of capacity
                 else:
-                    print("sorry ekhnaton capacity is from 250 to 450")
-                    print("check your count again")
-                    self.items['buffet'] = 0
+                    print("استيعاب القاعة من 250 الي 450")
+                    print("تحقق من الرقم مرة اخري ")
+                    self.items['بوفية'] = 0
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                     return self.count
         elif self.type.get() == 1:
-            if self.buffet.get() == 1:
+            if self.buffetvar.get() == "Romancy":
                 if self.count.get() == 250:
-                    self.items['buffet'] = 56000
+                    self.items['بوفية'] = 56000
                     self.cost = sum(self.items.values())
-                    print("your selection on ROMANCY buffet")
-                    print("your ballroom_type is Officer")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية رومانسي")
+                    print("ضابط")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 elif self.count.get() > 250 and self.count.get() < 451:
                     rate = 120
                     extra = self.count.get() - 250
                     extra_cost = rate * extra
-                    self.items['buffet'] = 56000 + extra_cost
+                    self.items['بوفية'] = 56000 + extra_cost
                     self.cost = sum(self.items.values())
                     print("your selection on ROMANCY buffet")
-                    print("your ballroom_type is Officer")
-                    print("your count is " + str(self.count.get()))
+                    print("ضابط")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 else:
-                    print("sorry ekhnaton capacity is from 250 to 450")
-                    print("check your count again")
-                    self.items['buffet'] = 0
-            elif self.buffet.get() == 2:
+                    print("استيعاب القاعة من 250 الي 450")
+                    print("تحقق من العدد مرة اخري")
+                    self.items['بوفية'] = 0
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
+            elif self.buffetvar.get() == "Ahlam":
                 if self.count.get() == 250:
-                    self.items['buffet'] = 60500
+                    self.items['بوفية'] = 60500
                     self.cost = sum(self.items.values())
                     print("your selection on AHLAM buffet")
-                    print("your ballroom_type is Officer")
-                    print("your count is " + str(self.count.get()))
+                    print("ضابط")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 elif self.count.get() > 250 and self.count.get() < 451:
                     rate = 140
                     extra = self.count.get() - 250
                     extra_cost = rate * extra
-                    self.items['buffet'] = 60500 + extra_cost
+                    self.items['بوفية'] = 60500 + extra_cost
                     self.cost = sum(self.items.values())
                     print("your selection on AHLAM buffet")
-                    print("your ballroom_type is Officer")
-                    print("your count is " + str(self.count.get()))
+                    print("ضابط")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 else:
-                    print("sorry ekhnaton capacity is from 250 to 450")
-                    print("check your count again")
-                    self.items['buffet'] = 0
-            elif self.buffet.get() == 3:
+                    print("استيعاب القاعة من 250 الي 450")
+                    print("تحقق من العدد مرة اخري")
+                    self.items['بوفية'] = 0
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
+            elif self.buffetvar.get() == "Omara":
                 if self.count.get() == 250:
-                    self.items['buffet'] = 65000
+                    self.items['بوفية'] = 65000
                     self.cost = sum(self.items.values())
-                    print("your selection on OMARAA' buffet")
-                    print("your ballroom_type is Officer")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية الامراء")
+                    print("ضابط")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 elif self.count.get() > 250 and self.count.get() < 451:
                     rate = 160
                     extra = self.count.get() - 250
                     extra_cost = rate * extra
-                    self.items['buffet'] = 65000 + extra_cost
+                    self.items['بوفية'] = 65000 + extra_cost
                     self.cost = sum(self.items.values())
-                    print("your selection on OMARAA' buffet")
-                    print("your ballroom_type is Officer")
-                    print("your count is " + str(self.count.get()))
+                    print("بوفية الامراء")
+                    print("ضابط")
+                    print("العدد " + str(self.count.get()))
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
                 else:
-                    print("sorry ekhnaton capacity is from 250 to 450")
-                    print("check your count again")
-                    self.items['buffet'] = 0
+                    print("استيعاب القاعة من 250 الي 450")
+                    print("تحقق من العدد مرة اخري")
+                    self.items['بوفية'] = 0
+                    buffetValue.set(str(account.items["بوفية"]) + " L.E.")
 
     def add_chaircover(self):
         cost = self.count.get() * 10
@@ -593,47 +580,64 @@ class obj_ekhnaton:
         if "showfire" in self.items.keys():
             self.items.pop("showfire")
 
-    def add_ledscreen(self):
-        self.items["ledscreen"] = 3000
-        self.cost = sum(self.items.values())
+    def toggle_ledscreen(self):
+        if account.enteranceScreen.get() == 1:
+            self.items["انترانس ليد سكرين"] = 3000
+            self.cost = sum(self.items.values())
+            enteranceledValue.set(str(account.items["انترانس ليد سكرين"])+" L.E.")
+        elif account.enteranceScreen.get() == 0:
+            if "انترانس ليد سكرين" in self.items.keys():
+                self.items.pop("انترانس ليد سكرين")
+            enteranceledValue.set(str(0)+" L.E.")
 
-    def remove_ledscreen(self):
-        if "ledscreen" in self.items.keys():
-            self.items.pop("ledscreen")
 
-    def add_catwalk(self):
-        self.items["catwalk"] = 2400
-        self.cost = sum(self.items.values())
+    def toggle_catwalk(self):
+        if account.catwalk.get() == 1:
+            chkb_decorcatwalk.configure(state=NORMAL)
+            self.items["كات ووك"] = 2400
+            self.cost = sum(self.items.values())
+            catwalkValue.set(str(account.items["كات ووك"])+" L.E.")
+        elif account.catwalk.get() == 0:
+            self.decorcatwalk.set(0)
+            chkb_decorcatwalk.configure(state=DISABLED)
+            if "كات ووك" in self.items.keys():
+                self.items.pop("كات ووك")
+            catwalkValue.set(str(0)+" L.E.")
 
-    def remove_catwalk(self):
-        if "catwalk" in self.items.keys():
-            self.items.pop("catwalk")
 
-    def add_launge(self):
-        self.items["launge"] = 2400
-        self.cost = sum(self.items.values())
+    def toggle_lounge(self):
+        if account.lounge.get() == 1:
+            self.items["لاونج جلد"] = 2400
+            self.cost = sum(self.items.values())
+            loungeValue.set(str(account.items["لاونج جلد"])+" L.E.")
+        elif account.lounge.get() == 0:
+            if "لاونج جلد" in self.items.keys():
+                self.items.pop("لاونج جلد")
+            loungeValue.set(str(0)+" L.E.")
 
-    def remove_launge(self):
-        if "launge" in self.items.keys():
-            self.items.pop("launge")
 
-    def add_2_large_round_table(self):
-        cost = 2000
-        self.items["2_large_round_table"] = cost
-        self.cost = sum(self.items.values())
+    def toggle_2_large_round_table(self):
+        if account.largeroundtabled.get() == 1:
+            chkb_largeTables_centerPeice.configure(state=NORMAL)
+            self.items["2 ترابيزة كبيرة"] = 2000
+            self.cost = sum(self.items.values())
+            largetablesValue.set(str(account.items["2 ترابيزة كبيرة"])+" L.E.")
+        elif account.largeroundtabled.get() == 0:
+            self.largeCenterpeice.set(0)
+            chkb_largeTables_centerPeice.configure(state=DISABLED)
+            if "2 ترابيزة كبيرة" in self.items.keys():
+                self.items.pop("2 ترابيزة كبيرة")
+            largetablesValue.set(str(0)+" L.E.")
 
-    def remove_2_large_round_table(self):
-        if "2_large_round_table" in self.items.keys():
-            self.items.pop("2_large_round_table")
-
-    def add_2_large_round_centerpiece(self):
-        cost = 600
-        self.items["2_large_round_centerpeice"] = cost
-        self.cost = sum(self.items.values())
-
-    def remove_2_large_round_centerpiece(self):
-        if "2_large_round_centerpeice" in self.items.keys():
-            self.items.pop("2_large_round_centerpeice")
+    def toggle_2_large_round_centerpiece(self):
+        if account.largeCenterpeice.get() == 1:
+            self.items["سنتر بيز راوند تابل"] = 600
+            self.cost = sum(self.items.values())
+            largetablescenterpeiceValue.set(str(account.items["سنتر بيز راوند تابل"])+" L.E.")
+        elif account.largeCenterpeice.get() == 0:
+            if "سنتر بيز راوند تابل" in self.items.keys():
+                self.items.pop("سنتر بيز راوند تابل")
+            largetablescenterpeiceValue.set(str(0)+" L.E.")
 
     def add_dancefloor(self):
         cost = 3500
@@ -702,20 +706,9 @@ class obj_ekhnaton:
     def update_count(self, value):
         count = self.count
         count.set(value)
+        countValue.set(self.count.get())
         print(count.get())
         return count.get()
-
-    def update_buffet(self, value):
-        buffet = self.buffet
-        buffetvar = self.buffetvar.get()
-        if buffetvar == "Romancy":
-            buffet.set(1)
-        elif buffetvar == "Ahlam":
-            buffet.set(2)
-        elif buffetvar == "Omara":
-            buffet.set(3)
-        else:
-            buffet.set(1)
 
     def update_chairs(self, value):
         chairs = self.chairs
@@ -783,15 +776,6 @@ class obj_ekhnaton:
             fourfire.set(0)
             chkb_fireondance.configure(state=DISABLED)
 
-    def update_decor_catwalk(self, value):
-        temp = self.catwalk.get()
-        decorcatwalk = self.decorcatwalk
-        if temp == 1:
-            chkb_decorcatwalk.configure(state=NORMAL)
-        elif temp == 0:
-            decorcatwalk.set(0)
-            chkb_decorcatwalk.configure(state=DISABLED)
-
     def add_bellydancers(self, count):
         cost = (count /2)* 850
         self.items["belly dancers"] = cost
@@ -816,15 +800,6 @@ class obj_ekhnaton:
     def remove_ballarena(self):
         if "ballarena" in self.items.keys():
             self.items.pop("ballarena")
-
-    def update_largeRound(self, value):
-        temp = self.largeroundtabled.get()
-        centerpeice = self.largeCenterpeice
-        if temp == 1:
-            chkb_largeTables_centerPeice.configure(state=NORMAL)
-        elif temp == 0:
-            centerpeice.set(0)
-            chkb_largeTables_centerPeice.configure(state=DISABLED)
 
     def update_GuestbookB(self):
         temp = self.enteranceguestbook.get()
@@ -1244,19 +1219,18 @@ lblCountValue = ttk.Label(ekhnaton_frame,textvariable=countValue, font=('arial',
 lblCountValue.grid(row=3,column=4, padx=5, pady=5)
 
 
-lblbuffet = ttk.Label(ekhnaton_frame, font=('arial', 10, 'bold'), text="Buffet:", anchor='w', justify="right")
-lblbuffet.grid(row=3,column=5, pady=5)
-account.update_buffet(1)
-spinbox_buffet = Spinbox(ekhnaton_frame,from_=1,to=3,textvariable=account.buffetvar,font=('arial', 10, 'bold'), foreground="blue", values=("Romancy","Ahlam","Omara"), justify="center", state="readonly", command=lambda: account.update_buffet(account.buffet.get()))
+lblbuffet = ttk.Label(ekhnaton_frame, font=('arial', 10, 'bold'), text="Buffet:", anchor='w')
+lblbuffet.grid(row=3,column=5)
+spinbox_buffet = Spinbox(ekhnaton_frame,from_=1,to=3,textvariable=account.buffetvar,font=('arial', 10, 'bold'),width=10, foreground="blue", values=("Romancy","Ahlam","Omara"), justify="center", state="readonly", command=lambda: account.buffet_cost())
 spinbox_buffet.grid(row=3,column=6,columnspan=1)
 spinbox_buffet.configure(state="readonly")
 spinbox_buffet.tk_focusNext()
 lblbuffetValue = ttk.Label(ekhnaton_frame,textvariable=buffetValue, font=('arial', 10, 'bold'),foreground="red", anchor='w', justify="right")
-lblbuffetValue.grid(row=3,column=8, pady=5)
+lblbuffetValue.grid(row=3,column=7, pady=5)
 
 
-chkb_officer = Checkbutton(ekhnaton_frame,text="Officer",variable=account.type,font=('arial', 10, 'bold'),width=8, onvalue= 1,offvalue=0, justify="left", command=lambda: account.type.get())
-chkb_officer.grid(row=3,column=7, columnspan=1, sticky="w")
+chkb_officer = Checkbutton(ekhnaton_frame,text="Officer",variable=account.type,font=('arial', 10, 'bold'),width=8, onvalue= 1,offvalue=0, justify="left", command=lambda: account.buffet_cost())
+chkb_officer.grid(row=3,column=8, columnspan=1, sticky="w")
 
 
 #=======================================Row 4=========================================
@@ -1273,13 +1247,13 @@ lblChairsValue.grid(row=4,column=4, padx=5, pady=5)
 
 
 chkb_drinks = Checkbutton(ekhnaton_frame, text="Add Drinks:",variable=account.add_drinks,font=('arial', 10, 'bold'), width=15, onvalue= 1, offvalue=0, justify="center", command=lambda: account.reset_drinks())
-chkb_drinks.grid(row=4,column=5, columnspan=2)
+chkb_drinks.grid(row=4,column=5)
 chkb_drinks.select()
 spinbox_drinks = Spinbox(ekhnaton_frame,from_=0,to=3 ,textvariable=account.drinksvar,font=('arial', 10, 'bold'), foreground="blue",background="#eff0f1", values=("","Pepsi","Fresh Drinks", "Open Buffet"), justify="center", state="readonly", command= lambda: account.update_drinks(account.drinks.get()))
-spinbox_drinks.grid(row=4,column=7,columnspan=1)
+spinbox_drinks.grid(row=4,column=6,columnspan=1)
 spinbox_drinks.configure(state="readonly")
 lbldrinksValue = ttk.Label(ekhnaton_frame,textvariable=drinksValue,foreground="red", font=('arial', 10, 'bold'), anchor='w')
-lbldrinksValue.grid(row=4,column=8, padx=5, pady=5)
+lbldrinksValue.grid(row=4,column=7, padx=5, pady=5)
 
 #======================================Row 5============================================
 
@@ -1292,11 +1266,11 @@ lblshowfireValue = ttk.Label(ekhnaton_frame,textvariable=showfireValue,foregroun
 lblshowfireValue.grid(row=5,column=4, padx=5, pady=5)
 
 lblSpecial_Entrance = ttk.Label(ekhnaton_frame, font=('arial', 10, 'bold'), text="Special Entrance:", anchor='w')
-lblSpecial_Entrance.grid(row=5,column=5,columnspan=2, pady=5)
-chkb_Entrence_led = Checkbutton(ekhnaton_frame, text="Entrance Screen",variable=account.enteranceScreen,font=('arial', 9, 'bold'), width=12, onvalue= 1, offvalue=0, justify="left")
-chkb_Entrence_led.grid(row=5,column=7, columnspan=1, sticky="w")
+lblSpecial_Entrance.grid(row=5,column=5,columnspan=1, pady=5)
+chkb_Entrence_led = Checkbutton(ekhnaton_frame, text="Entrance Screen",variable=account.enteranceScreen,font=('arial', 9, 'bold'), width=12, onvalue= 1, offvalue=0, justify="left",command=lambda :account.toggle_ledscreen())
+chkb_Entrence_led.grid(row=5,column=6, sticky="we")
 lblEntrence_ledValue = ttk.Label(ekhnaton_frame,textvariable=enteranceledValue,foreground="red", font=('arial', 10, 'bold'), anchor='w')
-lblEntrence_ledValue.grid(row=5,column=8, padx=5, pady=5)
+lblEntrence_ledValue.grid(row=5,column=7, padx=5, pady=5)
 
 
 #====================================Row 6 ===============================
@@ -1304,31 +1278,31 @@ lblEntrence_ledValue.grid(row=5,column=8, padx=5, pady=5)
 
 lbllarge_tables = ttk.Label(ekhnaton_frame, font=('arial', 10, 'bold'), text="Additions:", anchor='w')
 lbllarge_tables.grid(row=6,column=2, padx=5, pady=5)
-chkb_largeTables = Checkbutton(ekhnaton_frame, text="2 Large VIP Tables",variable=account.largeroundtabled,font=('arial', 10, 'bold'), width=16, onvalue= 1, offvalue=0, justify="right",command=lambda: account.update_largeRound(account.largeroundtabled.get()))
+chkb_largeTables = Checkbutton(ekhnaton_frame, text="2 Large VIP Tables",variable=account.largeroundtabled,font=('arial', 10, 'bold'), width=16, onvalue= 1, offvalue=0, justify="right",command=lambda: account.toggle_2_large_round_table())
 chkb_largeTables.grid(row=6,column=3, columnspan=1)
 lbllarge_tablesValue = ttk.Label(ekhnaton_frame,textvariable=largetablesValue,foreground="red", font=('arial', 10, 'bold'), anchor='w')
 lbllarge_tablesValue.grid(row=6,column=4)
 
 
 
-chkb_Catwalk = Checkbutton(ekhnaton_frame, text="Cat Walk",variable=account.catwalk,font=('arial', 9, 'bold'), width=6, onvalue= 1, offvalue=0, justify="left",command=lambda: account.update_decor_catwalk(account.catwalk.get()))
-chkb_Catwalk.grid(row=6,column=7, columnspan=1, sticky="w")
+chkb_Catwalk = Checkbutton(ekhnaton_frame, text="Cat Walk",variable=account.catwalk,font=('arial', 9, 'bold'), width=6, onvalue= 1, offvalue=0, justify="left",command=lambda: account.toggle_catwalk())
+chkb_Catwalk.grid(row=6,column=6, columnspan=1, sticky="we")
 lblCatwalkValue = ttk.Label(ekhnaton_frame,textvariable=catwalkValue,foreground="red", font=('arial', 10, 'bold'), anchor='w')
-lblCatwalkValue.grid(row=6,column=8, padx=5, pady=5)
+lblCatwalkValue.grid(row=6,column=7, padx=5, pady=5)
 
 
 #=====================================Row 7 ============================
 
 
-chkb_largeTables_centerPeice = Checkbutton(ekhnaton_frame, text="With CenterPeice",variable=account.largeCenterpeice,state=DISABLED,font=('arial', 10, 'bold'), width=15, onvalue= 1, offvalue=0, justify="right", anchor="w")
+chkb_largeTables_centerPeice = Checkbutton(ekhnaton_frame, text="With CenterPeice",variable=account.largeCenterpeice,state=DISABLED,font=('arial', 10, 'bold'), width=15, onvalue= 1, offvalue=0, justify="right", anchor="w",command=lambda :account.toggle_2_large_round_centerpiece())
 chkb_largeTables_centerPeice.grid(row=7,column=3,columnspan=1)
 lbllargeTables_centerPeiceValue = ttk.Label(ekhnaton_frame,textvariable=largetablescenterpeiceValue,foreground="red", font=('arial', 10, 'bold'), anchor='w')
 lbllargeTables_centerPeiceValue.grid(row=7,column=4)
 
-chkb_lounge = Checkbutton(ekhnaton_frame, text="Lounge",variable=account.lounge,font=('arial', 9, 'bold'), width=6, onvalue= 1, offvalue=0, justify="left", anchor="w")
-chkb_lounge.grid(row=7,column=7, columnspan=1, sticky="w")
+chkb_lounge = Checkbutton(ekhnaton_frame, text="Lounge",variable=account.lounge,font=('arial', 10, 'bold'), onvalue= 1, offvalue=0, justify="left",command=lambda :account.toggle_lounge())
+chkb_lounge.grid(row=7,column=6, sticky="we")
 lblloungeValue = ttk.Label(ekhnaton_frame,textvariable=loungeValue,foreground="red", font=('arial', 10, 'bold'), anchor='w')
-lblloungeValue.grid(row=7,column=8, padx=5, pady=5)
+lblloungeValue.grid(row=7,column=7, padx=5, pady=5)
 
 
 tabs.add(ekhnaton_frame, text="Ekhnaton")
@@ -1603,7 +1577,7 @@ entry_artistout3.grid(row=24,column=5,columnspan=1,padx=10)
 lblExtraDVDValue = ttk.Label(ekhnaton_frame,textvariable=artistoutValue,foreground="red", font=('arial', 10, 'bold'), anchor='w')
 lblExtraDVDValue.grid(row=24,column=6, padx=5, pady=5)
 
-lblTotal = ttk.Label(ekhnaton_frame,foreground="Green",textvariable=totalValue, font=('arial', 10, 'bold'), anchor='w')
+lblTotal = ttk.Label(ekhnaton_frame,foreground="Purple",textvariable=totalValue, font=('arial', 10, 'bold'), anchor='w')
 lblTotal.grid(row=24,column=7,columnspan = 2, padx=5, pady=5)
 
 #===================================================Row 25 ===========================================
